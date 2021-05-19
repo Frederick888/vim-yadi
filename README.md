@@ -1,6 +1,16 @@
 yadi.vim
 ========
 
+Credits
+-------
+
+This project is a fork of
+[timakro/vim-yadi](https://github.com/timakro/vim-yadi) with some modifications
+to tackle continuation indentation.
+
+Introduction
+------------
+
 Yet Another Detect Indent. Here is how it works in my `.vimrc`:
 
 ```vim
