@@ -121,3 +121,23 @@ There are a bunch of plugins with DetectIndent-like functionality:
 * [IndentFinder](https://github.com/ldx/vim-indentfinder)
 
 But none of them let you fall back to file type plugins if detection fails. Most of them force you to set a fallback indentation style. [sleuth.vim](https://github.com/tpope/vim-sleuth) is more sophisticated and tries to guess the indentation from surrounding files. It's a different approach which comes at the cost of greater complexity and makes the result rather unpredictable.
+
+Continuation indentation
+------------------------
+
+When wider continuation indentation is used, there can sometimes be more lines
+with such indentations than regular ones. Such cases can confuse the original
+algorithm.
+
+In this fork, two configuration were added to filter out these lines:
+
+```vim
+let s:yadi_ignore_after_trailing = get(g:, 'yadi_ignore_after_trailing', ['(', ',', '=', '->'])
+let s:yadi_ignore_with_leading = get(g:, 'yadi_ignore_with_leading', ['.', '&', '|', '^', '+ ', '- ', '> ', '< ', '= '])
+```
+
+`g:yadi_ignore_after_trailing`: If the preceding line of current one ends with
+any of the strings in this list, current line is ignored in `DetectIndent`.
+
+`g:yadi_ignore_with_leading`: If current line begins with any of the strings in
+this list, current line is ignored in `DetectIndent`.
